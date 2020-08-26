@@ -1,4 +1,4 @@
-# cctest 0.1.0  | [_API_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.1.0/CHANGELOG.md)
+# cctest 0.1.1  | [_Repo_](https://github.com/jpcx/cctest) | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.1.1/CHANGELOG.md)
 
 ```
              __                   __
@@ -45,11 +45,11 @@ namespace unique {
 // use the cctest namespace for operator overloads
 using namespace cctest;
 
-test t0 = "compile-time test with cctest::static_pass "
+test t0 = "compiletime test with cctest::static_[pass/fail] "
           "or cctest::static_fail"
           << static_pass;
 
-test t1 = "use standard booleans for dynamic testing"
+test t1 = "runtime test with ccctest::dynamic_[pass/fail]"
           << dynamic_pass;
 
 // note: static_require<cond>  specializes to static_pass or static_fail

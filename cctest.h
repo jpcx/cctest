@@ -40,11 +40,11 @@
 ///   // use the cctest namespace for operator overloads
 ///   using namespace cctest;
 ///
-///   test t0 = "compile-time test with cctest::static_pass "
+///   test t0 = "compiletime test with cctest::static_[pass/fail] "
 ///             "or cctest::static_fail"
 ///             << static_pass;
-///
-///   test t1 = "use standard booleans for dynamic testing"
+///   
+///   test t1 = "runtime test with ccctest::dynamic_[pass/fail]"
 ///             << dynamic_pass;
 ///
 ///   // note: static_require<cond>  specializes to static_pass or static_fail
@@ -140,7 +140,7 @@ struct dynamic_result_type;
 
 namespace detail_ {
 
-/// equivalent to std::remove_reference_t<T>
+/// equivalent to std::remove_cvref_t<T>
 /// @private
 template <class T>
 using nocvref = std::remove_cv_t<std::remove_reference_t<T>>;
