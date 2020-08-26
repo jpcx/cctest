@@ -1,6 +1,12 @@
 # Changelog
 
-## [Upcoming](https://github.com/jpcx/cctest/compare/0.1.4...devel)
+## [Upcoming](https://github.com/jpcx/cctest/compare/0.1.5...devel)
+
+## [0.1.5](https://github.com/jpcx/cctest/releases/tag/0.1.5)
+
+### Changed
+
+- fixed installation destination documentation
 
 ## [0.1.4](https://github.com/jpcx/cctest/releases/tag/0.1.4)
 
