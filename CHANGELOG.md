@@ -1,14 +1,20 @@
 # Changelog
 
-## [Upcoming](compare/0.1.2...devel)
+## [Upcoming](https://github.com/jpcx/cctest/compare/0.1.3...devel)
 
-## [0.1.2](releases/tag/0.1.2)
+## [0.1.3](https://github.com/jpcx/cctest/releases/tag/0.1.3)
+
+### Fixed
+
+- fixed CHANGELOG.md links; made absolute
+
+## [0.1.2](https://github.com/jpcx/cctest/releases/tag/0.1.2)
 
 ### Removed
 
 - removed repo link from README.md; localized to webpage
 
-## [0.1.1](releases/tag/0.1.1)
+## [0.1.1](https://github.com/jpcx/cctest/releases/tag/0.1.1)
 
 ### Added
 
@@ -20,7 +26,7 @@
 - updated two documentation example descriptions
 - fixed CHANGELOG.md Upcoming link
 
-## [0.1.0](releases/tag/0.1.0)
+## [0.1.0](https://github.com/jpcx/cctest/releases/tag/0.1.0)
 
 ### Added
 
