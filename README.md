@@ -1,4 +1,4 @@
-# cctest 0.1.3 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.1.3/CHANGELOG.md)
+# cctest 0.1.4 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.1.4/CHANGELOG.md)
 
 ```
              __                   __
@@ -36,7 +36,7 @@ make install
 __use__
 
 ```cpp
-#include <cctest.h>
+#include <cctest/cctest.h>
 
 // use a namespace to respect ODR across TUs (alternatively, use `static`)
 
@@ -104,7 +104,7 @@ TEST_SCOPE(scoped.combinations, "static + dynamic checks") {
 A main file must be created as well; use it to print a success mesage
 
 ```cpp
-#include <cctest.h>
+#include <cctest/cctest.h>
 
 int
 main(int, char**) {
@@ -117,7 +117,7 @@ Alternatively, `#define CCTEST_MAIN`
 
 ```cpp
 #define CCTEST_MAIN
-#include <cctest.h>
+#include <cctest/cctest.h>
 ```
 
 ## Testing

@@ -1,4 +1,3 @@
-# std=c++17 and -I. should be the only necessary flags
 CXXFLAGS += -std=c++17 -I.
 
 # set prefix to /usr/local by default
@@ -8,15 +7,15 @@ endif
 
 all: testcctest
 
-testcctest: testcctest.cc cctest.h
+testcctest: testcctest.cc cctest/cctest.h
 	${CXX} ${CXXFLAGS} $< -o $@
 
 test: testcctest
 	./testcctest
 
-install: cctest.h
-	install -d ${DESTDIR}${PREFIX}/include/
-	install -m 644 $< ${DESTDIR}${PREFIX}/include/
+install: cctest/cctest.h
+	install -d ${DESTDIR}${PREFIX}/include/cctest
+	install -m 644 $< ${DESTDIR}${PREFIX}/include/cctest
 
 clean:
 	${RM} -f testcctest

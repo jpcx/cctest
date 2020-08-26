@@ -1,6 +1,12 @@
 # Changelog
 
-## [Upcoming](https://github.com/jpcx/cctest/compare/0.1.3...devel)
+## [Upcoming](https://github.com/jpcx/cctest/compare/0.1.4...devel)
+
+## [0.1.4](https://github.com/jpcx/cctest/releases/tag/0.1.4)
+
+### Changed
+
+- changed cctest.h install directory to cctest/cctest.h
 
 ## [0.1.3](https://github.com/jpcx/cctest/releases/tag/0.1.3)
 
