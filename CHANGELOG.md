@@ -4,6 +4,10 @@
 
 ## [0.1.1](releases/tag/0.1.1)
 
+### Added
+
+- added link to repo from documentation homepage
+
 ### Fixed
 
 - fixed private documentation for cctest::detail_::nocvref
@@ -14,4 +18,4 @@
 
 ### Added
 
-- Basic features, documentation, and tests complete
+- Basic features, documentation, and tests
