@@ -26,7 +26,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.  ////
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <cctest.h>
+#include <cctest/cctest.h>
 
 using namespace cctest;
 #define dsc(...) "[cctest] " __VA_ARGS__
