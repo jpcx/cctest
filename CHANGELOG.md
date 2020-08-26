@@ -1,6 +1,6 @@
 # Changelog
 
-## [Upcoming](https://github.com/jpcx/cctest/compare/0.1.2...devel)
+## [Upcoming](https://github.com/jpcx/cctest/compare/0.1.3...devel)
 
 ## [0.1.3](https://github.com/jpcx/cctest/releases/tag/0.1.3)
 
