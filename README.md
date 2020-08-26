@@ -1,4 +1,4 @@
-# cctest 0.1.0  | [_API_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.1.0/CHANGELOG.md)
+# cctest 0.1.1  | [_API_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.1.1/CHANGELOG.md)
 
 ```
              __                   __

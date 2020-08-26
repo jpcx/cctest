@@ -140,7 +140,7 @@ struct dynamic_result_type;
 
 namespace detail_ {
 
-/// equivalent to std::remove_reference_t<T>
+/// equivalent to std::remove_cvref_t<T>
 /// @private
 template <class T>
 using nocvref = std::remove_cv_t<std::remove_reference_t<T>>;
