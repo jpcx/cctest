@@ -1,4 +1,4 @@
-# cctest 0.1.4 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.1.4/CHANGELOG.md)
+# cctest 0.1.5 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.1.5/CHANGELOG.md)
 
 ```
              __                   __
@@ -29,7 +29,7 @@ This is a single-header library! Simply include this directory or use `make inst
 __install__
 
 ```shell
-# copies cctest.h to ${DESTDIR}${PREFIX}/include/ 
+# copies cctest.h to ${DESTDIR}${PREFIX}/include/cctest 
 make install
 ```
 
