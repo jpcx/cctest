@@ -289,31 +289,31 @@ struct test {
   /// load the description from an `std::string_view`
   test(const std::string_view &description) : description_(description.data()) {
     print_attempt<>();
-  };
+  }
   /// load the description from a `const char *`
   test(const char *description) : description_(description) {
     print_attempt<>();
-  };
+  }
   /// skip a description; load only a static result
   template <
       class Result,
       std::enable_if_t<detail_::is_static_result_type<Result>> * = nullptr>
   constexpr test(Result &&) {
     static_assert(detail_::nocvref<Result>::value);
-  };
+  }
   /// skip a description; load only a static result predicate
   template <
       class Pred,
       std::enable_if_t<detail_::is_static_result_predicate<Pred>> * = nullptr>
   constexpr test(Pred &&) {
     static_assert(detail_::is_static_pass_predicate<Pred>);
-  };
+  }
   /// skip a description; load only a static pass void
   template <class Void,
             std::enable_if_t<detail_::is_static_pass_void<Void>> * = nullptr>
   constexpr test(Void &&) {
     static_assert(true);
-  };
+  }
   /// skip a description; load only a dynamic result
   template <
       class Result,
@@ -321,7 +321,7 @@ struct test {
   test(Result &&result) {
     if (!result.value)
       dynamic_fail();
-  };
+  }
   /// skip a description; load only a dynamic result predicate
   template <
       class Pred,
@@ -329,7 +329,7 @@ struct test {
   test(Pred &&pred) {
     if (!pred().value)
       dynamic_fail();
-  };
+  }
 
   /// print a description to the console
   inline const test &
@@ -443,7 +443,7 @@ private:
   const char *description_ = "";
   /// logs a failure message in case of dynamic test failure
   /// @private
-  void dynamic_fail() const noexcept {
+  [[noreturn]] void dynamic_fail() const noexcept {
     std::cout << "\033[01m\033[31mFAIL\033[0m\033[0m " << description_ << '\n';
     std::terminate();
   }
@@ -646,16 +646,16 @@ struct dynamic_result_type {
   inline dynamic_result_type
   operator&&(const dynamic_result_type &other) const noexcept {
     return {value && other.value};
-  };
+  }
 
   /// operator|| overload for boolean logic
   inline dynamic_result_type
   operator||(const dynamic_result_type &other) const noexcept {
     return {value || other.value};
-  };
+  }
 
   /// operator! overload for boolean logic
-  inline dynamic_result_type operator!() const noexcept { return {!value}; };
+  inline dynamic_result_type operator!() const noexcept { return {!value}; }
 
   /// operator== overload for boolean comparison
   inline bool operator==(bool cmp) const noexcept { return value == cmp; }
@@ -757,15 +757,15 @@ const dynamic_result_type dynamic_fail{false};
 /// shorthand for `if constexpr(!(...)) return cctest::static_fail`
 #define STATIC_CHECK(...)                                                      \
   if constexpr (!(__VA_ARGS__))                                                \
-    return cctest::static_fail;
+  return cctest::static_fail
 
 /// shorthand for `if (!(...)) return cctest::dynamic_fail`
 #define DYNAMIC_CHECK(...)                                                     \
   if (!(__VA_ARGS__))                                                          \
-    return cctest::dynamic_fail;
+  return cctest::dynamic_fail
 
 /// closes a dynamic test scope with a pass (functions must return values)
-#define CLOSE_SCOPE return cctest::dynamic_pass;
+#define CLOSE_SCOPE return cctest::dynamic_pass
 
 #endif // CCTEST_DISABLE_MACROS
 

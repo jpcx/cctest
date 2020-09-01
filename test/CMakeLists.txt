@@ -25,21 +25,9 @@
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-MAKEFLAGS += --no-print-directory
+add_executable(test${PROJECT_NAME} test${PROJECT_NAME}.cc)
+target_link_libraries(test${PROJECT_NAME} ${PROJECT_NAME})
 
-all: build/test/testcctest
-
-build:
-	mkdir -p $@
-
-build/test/testcctest: build
-	cmake -B$<
-	cmake --build $< --target testcctest
-
-test: build/test/testcctest
-	./$<
-
-clean:
-	${RM} -r build
-
-.PHONY: all test clean
+add_custom_target(test
+  COMMAND ${CMAKE_BINARY_DIR}/test/testcctest
+  DEPENDS test${PROJECT_NAME})

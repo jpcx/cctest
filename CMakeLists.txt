@@ -25,21 +25,37 @@
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-MAKEFLAGS += --no-print-directory
+cmake_minimum_required (VERSION 3.0)
+project (cctest
+         VERSION 0.2.0
+         DESCRIPTION "a small static/dynamic testing framework for C++17"
+         HOMEPAGE_URL "https://github.com/jpcx/cctest"
+         LANGUAGES CXX)
 
-all: build/test/testcctest
+set (CLANG_WARNINGS
+     -Weverything
+     -Wno-c++98-c++11-compat
+     -Wno-c++98-compat
+     -Wno-c++98-compat-pedantic
+     -Wno-missing-variable-declarations
+     -Wno-global-constructors
+     -Wno-documentation-unknown-command)
 
-build:
-	mkdir -p $@
+set (BASE_CXX_FLAGS -std=c++17)
 
-build/test/testcctest: build
-	cmake -B$<
-	cmake --build $< --target testcctest
+add_library (${PROJECT_NAME} INTERFACE)
 
-test: build/test/testcctest
-	./$<
+target_compile_options     (${PROJECT_NAME} INTERFACE
+                            ${CMAKE_CXX_FLAGS}
+                            ${BASE_CXX_FLAGS}
+                            $<$<CXX_COMPILER_ID:Clang>:${CLANG_WARNINGS}>)
+target_compile_features    (${PROJECT_NAME} INTERFACE cxx_std_17)
+target_include_directories (${PROJECT_NAME} INTERFACE ${PROJECT_SOURCE_DIR}/include)
 
-clean:
-	${RM} -r build
+add_subdirectory (test)
 
-.PHONY: all test clean
+install (TARGETS ${PROJECT_NAME}
+         EXPORT ${PROJECT_NAME}-targets
+         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

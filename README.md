@@ -1,4 +1,4 @@
-# cctest 0.1.5 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.1.5/CHANGELOG.md)
+# cctest 0.2.0 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.2.0/CHANGELOG.md)
 
 ```
              __                   __
@@ -22,18 +22,32 @@ Dynamic assertions are also supported and may be combined with static assertions
 
 - C++17
 
-## Usage
+## Setup
 
-This is a single-header library! Simply include this directory or use `make install`.
+This is a single-header library!  
+Place it in your project or use one of the follwing setups:
 
-__install__
+### CMake add_subdirectory
 
 ```shell
-# copies cctest.h to ${DESTDIR}${PREFIX}/include/cctest 
-make install
+git clone https://github.com/jpcx/cctest.git
+```
+```cmake
+add_subdirectory([cctest download dir])
+target_link_libraries([your target] cctest)
 ```
 
-__use__
+### CMake Install
+
+```shell
+git clone https://github.com/jpcx/cctest.git
+cd cctest
+make install # mkdir build
+             # cmake -Bbuild
+             # cmake --install build
+```
+
+## Usage
 
 ```cpp
 #include <cctest/cctest.h>
@@ -120,12 +134,21 @@ Alternatively, `#define CCTEST_MAIN`
 #include <cctest/cctest.h>
 ```
 
+__Note Regarding Static Tests and Macro Helpers:__  
+It is recommended that each test condition is split into separate `<<` statements.  
+Test assertions are executed by `operator<<`, so separation allows for easier  
+identification of a failed condition. This is lost when testing multiple statements  
+within a `TEST_SCOPE`.
+
 ## Testing
 
 All API features are self-tested:
 
 ```shell
-make test
+make test # mkdir build
+          # cmake -Bbuild
+          # cmake --build build --target test
+
 ```
 
 ## Contributing
