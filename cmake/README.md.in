@@ -33,7 +33,7 @@ Copy `include/cctest.h` into your project or use one of these methods:
 git clone -b @PROJECT_VERSION@ https://github.com/jpcx/cctest.git
 ```
 ```makefile
-CXXFLAGS += -I[ccutl install dir]/include
+CXXFLAGS += -I[cctest download dir]/include
 ```
 
 ### CMake Install
@@ -43,8 +43,10 @@ git clone -b @PROJECT_VERSION@ https://github.com/jpcx/cctest.git
 cd cctest
 
 make # mkdir build
-     # cmake -H. -Bbuild
+     # cmake -Bbuild
 
+# installs header to      ${DESTDIR}${PREFIX}/include/cctest-@PROJECT_VERSION@
+# installs cmake files to ${DESTDIR}${PREFIX}/lib/cmake/cctest-@PROJECT_VERSION@
 sudo make install # cmake --install build
 ```
 ```cmake
@@ -67,11 +69,6 @@ target_link_libraries([your target] cctest)
 
 ```shell
 git clone -b @PROJECT_VERSION@ https://github.com/jpcx/cctest.git # or git submodule add
-# optional; test the library
-cd cctest
-make test # mkdir build
-          # cmake -Bbuild
-          # cmake --build build --target test
 ```
 ```cmake
 add_subdirectory([cctest download dir])
