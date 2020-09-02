@@ -48,7 +48,7 @@ make # mkdir build
 sudo make install # cmake --install build
 ```
 ```cmake
-find_package(cctest @PROJECT_VERSION@ REQUIRED)
+find_package(cctest @PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@ REQUIRED)
 target_link_libraries([your target] cctest)
 ```
 
