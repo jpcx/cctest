@@ -11,6 +11,7 @@
 - switched build system to CMake
 - updated README.md with new CMake documentation
 - added note regarding static tests and macro helpers to README.md
+- reverted library entry point back to `cctest.h` (from `cctest/cctest.h`)
 
 ### Added
 

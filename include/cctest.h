@@ -31,7 +31,7 @@
 
 /// @file
 /// @code
-///   #include <cctest/cctest.h>
+///   #include <cctest.h>
 ///
 ///   // use a namespace to respect ODR across TUs (alternatively, use `static`)
 ///
@@ -77,7 +77,7 @@
 /// @endcode
 ///
 /// @code
-///   #include <cctest/cctest.h>
+///   #include <cctest.h>
 ///
 ///   // usage of the cctest namespace is not required
 ///   static auto t0 = cctest::test{"description must be put here instead"}
@@ -89,7 +89,7 @@
 /// @note helper macros may be disabled with `#define CCTEST_DISABLE_MACROS`
 ///
 /// @code
-///   #include <cctest/cctest.h>
+///   #include <cctest.h>
 ///
 ///   TEST(my.cool.feature, "can be tested like this as well")
 ///       << STATIC_REQUIRE(some_static_condition<int>)
@@ -113,11 +113,11 @@
 ///
 /// @code
 ///   #define CCTEST_MAIN
-///   #include <cctest/cctest.h>
+///   #include <cctest.h>
 /// @endcode
 /// OR
 /// @code
-///   #include <cctest/cctest.h>
+///   #include <cctest.h>
 ///
 ///   int
 ///   main(int, char**) {
@@ -727,7 +727,7 @@ const dynamic_result_type dynamic_fail{false};
 /// @param feature       - single token feature name to put in "[brackets]"
 /// @param literal_descr - descriptive string literal to print to console
 /// @code
-///   #include <cctest/cctest.h>
+///   #include <cctest.h>
 ///   TEST(my.cool.feature, "here is a test example") << static_require<true>;
 /// @endcode
 #define TEST(feature, literal_descr)                                           \
@@ -740,7 +740,7 @@ const dynamic_result_type dynamic_fail{false};
 /// @param feature       - single token feature name to put in "[brackets]"
 /// @param literal_descr - descriptive string literal to print to console
 /// @code
-///   #include <cctest/cctest.h>
+///   #include <cctest.h>
 ///   TEST_SCOPE(my.cool.feature, "here is a test scope example") {
 ///     if constexpr (false) return static_fail;
 ///     if (false) return dynamic_fail;

@@ -25,17 +25,7 @@ Dynamic assertions are also supported and may be combined with static assertions
 ## Setup
 
 This is a single-header library!  
-Place it in your project or use one of the follwing setups:
-
-### CMake add_subdirectory
-
-```shell
-git clone https://github.com/jpcx/cctest.git
-```
-```cmake
-add_subdirectory([cctest download dir])
-target_link_libraries([your target] cctest)
-```
+Copy the header into your project or use one of these methods:
 
 ### CMake Install
 
@@ -46,11 +36,50 @@ make install # mkdir build
              # cmake -Bbuild
              # cmake --install build
 ```
+```cmake
+find_package(cctest 0.2.0 REQUIRED)
+target_link_libraries([your target] cctest)
+```
+
+### CMake FetchContent
+
+```cmake
+include(FetchContent)
+FetchContent_Declare(cctest
+                     GIT_REPOSITORY https://github.com/jpcx/cctest.git
+                     GIT_TAG "0.2.0")
+FetchContent_MakeAvailable(cctest)
+target_link_libraries([your target] cctest)
+```
+
+### CMake add_subdirectory
+
+```shell
+git clone https://github.com/jpcx/cctest.git # or git submodule add
+# optional; test the library
+cd cctest
+make test # mkdir build
+          # cmake -Bbuild
+          # cmake --build build --target test
+```
+```cmake
+add_subdirectory([cctest download dir])
+target_link_libraries([your target] cctest)
+```
+
+### -I
+
+```shell
+git clone https://github.com/jpcx/cctest.git
+```
+```makefile
+CXXFLAGS += -I[ccutl install dir]/include
+```
 
 ## Usage
 
 ```cpp
-#include <cctest/cctest.h>
+#include <cctest.h>
 
 // use a namespace to respect ODR across TUs (alternatively, use `static`)
 
@@ -118,7 +147,7 @@ TEST_SCOPE(scoped.combinations, "static + dynamic checks") {
 A main file must be created as well; use it to print a success mesage
 
 ```cpp
-#include <cctest/cctest.h>
+#include <cctest.h>
 
 int
 main(int, char**) {
@@ -131,7 +160,7 @@ Alternatively, `#define CCTEST_MAIN`
 
 ```cpp
 #define CCTEST_MAIN
-#include <cctest/cctest.h>
+#include <cctest.h>
 ```
 
 __Note Regarding Static Tests and Macro Helpers:__  
