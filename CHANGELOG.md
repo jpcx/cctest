@@ -1,6 +1,12 @@
 # Changelog
 
-## [Upcoming](https://github.com/jpcx/cctest/compare/0.2.2...devel)
+## [Upcoming](https://github.com/jpcx/cctest/compare/0.2.3...devel)
+
+## [0.2.3](https://github.com/jpcx/cctest/releases/tag/0.2.3) \[[diff](https://github.com/jpcx/cctest/compare/0.2.2...0.2.3)\]
+
+### Changed
+
+- cleaned up README
 
 ## [0.2.2](https://github.com/jpcx/cctest/releases/tag/0.2.2) \[[diff](https://github.com/jpcx/cctest/compare/0.2.1...0.2.2)\]
 
