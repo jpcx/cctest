@@ -29,6 +29,10 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.  ////
 ////////////////////////////////////////////////////////////////////////////////
 
+#if (!defined(__cplusplus) || __cplusplus < 201703L)
+#error: cctest requires at least C++17
+#endif
+
 /// @file
 /// @code
 ///   #include <cctest.h>

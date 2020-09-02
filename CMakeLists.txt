@@ -29,7 +29,7 @@
 
 cmake_minimum_required (VERSION 3.0)
 project (cctest
-         VERSION 0.3.0
+         VERSION 0.4.0
          DESCRIPTION "a small static/dynamic testing framework for C++17"
          HOMEPAGE_URL "https://github.com/jpcx/cctest"
          LANGUAGES CXX)
@@ -49,15 +49,12 @@ configure_file (
 # - - - - - - - - - - - - - - - - - variables - - - - - - - - - - - - - - - -  #
 
 set (CLANG_WARNINGS
-     -Weverything
      -Wno-c++98-c++11-compat
      -Wno-c++98-compat
      -Wno-c++98-compat-pedantic
      -Wno-missing-variable-declarations
      -Wno-global-constructors
      -Wno-documentation-unknown-command)
-
-set (BASE_CXX_FLAGS -std=c++17)
 
 set (INCLUDE_DEST "include/${PROJECT_NAME}-${PROJECT_VERSION}")
 set (LIB_DEST "lib/cmake/${PROJECT_NAME}-${PROJECT_VERSION}")
@@ -68,10 +65,7 @@ add_library (${PROJECT_NAME} INTERFACE)
 
 target_compile_options     (${PROJECT_NAME} INTERFACE
                             ${CMAKE_CXX_FLAGS}
-                            ${BASE_CXX_FLAGS}
                             $<$<CXX_COMPILER_ID:Clang>:${CLANG_WARNINGS}>)
-
-target_compile_features    (${PROJECT_NAME} INTERFACE cxx_std_17)
 
 target_include_directories (${PROJECT_NAME} INTERFACE 
                             $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
