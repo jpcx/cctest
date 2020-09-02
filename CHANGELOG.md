@@ -1,8 +1,8 @@
 # Changelog
 
-## [Upcoming](https://github.com/jpcx/cctest/compare/0.3.0...devel)
+## [Upcoming](https://github.com/jpcx/cctest/compare/0.3.1...devel)
 
-## [0.3.0](https://github.com/jpcx/cctest/releases/tag/0.3.0) \[[diff](https://github.com/jpcx/cctest/compare/0.2.3...0.3.0)\]
+## [0.3.1](https://github.com/jpcx/cctest/releases/tag/0.3.1) \[[diff](https://github.com/jpcx/cctest/compare/0.2.3...0.3.1)\]
 
 ### Changed
 

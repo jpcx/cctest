@@ -26,6 +26,12 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 add_executable(test${PROJECT_NAME} test${PROJECT_NAME}.cc)
+target_compile_options(test${PROJECT_NAME} PRIVATE
+                       ${CMAKE_CXX_FLAGS}
+                       -std=c++17
+                       $<$<CXX_COMPILER_ID:Clang>:-Weverything>
+                       -Werror
+                       $<$<CXX_COMPILER_ID:Clang>:${CLANG_WARNINGS}>)
 target_link_libraries(test${PROJECT_NAME} ${PROJECT_NAME})
 
 add_custom_target(test
