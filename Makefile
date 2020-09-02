@@ -60,4 +60,4 @@ clean-all:
 	${RM} CHANGELOG.md
 	${RM} README.md
 
-.PHONY: all test install uninstall clean-all
+.PHONY: all test install uninstall clean clean-all

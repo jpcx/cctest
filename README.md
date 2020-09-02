@@ -1,4 +1,4 @@
-# cctest 0.2.1 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.2.1/CHANGELOG.md)
+# cctest 0.2.2 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.2.2/CHANGELOG.md)
 
 ```
              __                   __
@@ -30,7 +30,7 @@ Copy `include/cctest.h` into your project or use one of these methods:
 ### Standard -I
 
 ```shell
-git clone -b 0.2.1 https://github.com/jpcx/cctest.git
+git clone -b 0.2.2 https://github.com/jpcx/cctest.git
 ```
 ```makefile
 CXXFLAGS += -I[ccutl install dir]/include
@@ -39,7 +39,7 @@ CXXFLAGS += -I[ccutl install dir]/include
 ### CMake Install
 
 ```shell
-git clone -b 0.2.1 https://github.com/jpcx/cctest.git
+git clone -b 0.2.2 https://github.com/jpcx/cctest.git
 cd cctest
 
 make # mkdir build
@@ -48,7 +48,7 @@ make # mkdir build
 sudo make install # cmake --install build
 ```
 ```cmake
-find_package(cctest 0.2.1 REQUIRED)
+find_package(cctest 0.2 REQUIRED)
 target_link_libraries([your target] cctest)
 ```
 
@@ -58,7 +58,7 @@ target_link_libraries([your target] cctest)
 include(FetchContent)
 FetchContent_Declare(cctest
                      GIT_REPOSITORY https://github.com/jpcx/cctest.git
-                     GIT_TAG "0.2.1")
+                     GIT_TAG "0.2.2")
 FetchContent_MakeAvailable(cctest)
 target_link_libraries([your target] cctest)
 ```
@@ -66,7 +66,7 @@ target_link_libraries([your target] cctest)
 ### CMake add_subdirectory
 
 ```shell
-git clone -b 0.2.1 https://github.com/jpcx/cctest.git # or git submodule add
+git clone -b 0.2.2 https://github.com/jpcx/cctest.git # or git submodule add
 # optional; test the library
 cd cctest
 make test # mkdir build
