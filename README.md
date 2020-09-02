@@ -33,7 +33,7 @@ Copy `include/cctest.h` into your project or use one of these methods:
 git clone -b 0.2.3 https://github.com/jpcx/cctest.git
 ```
 ```makefile
-CXXFLAGS += -I[ccutl install dir]/include
+CXXFLAGS += -I[cctest download dir]/include
 ```
 
 ### CMake Install
