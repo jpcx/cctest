@@ -34,6 +34,18 @@ project (cctest
          HOMEPAGE_URL "https://github.com/jpcx/cctest"
          LANGUAGES CXX)
 
+configure_file (
+  ${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}-config-version.cmake.in
+  ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}-config-version.cmake @ONLY)
+
+configure_file (
+  ${PROJECT_SOURCE_DIR}/cmake/README.md.in
+  ${PROJECT_SOURCE_DIR}/README.md @ONLY)
+
+configure_file (
+  ${PROJECT_SOURCE_DIR}/cmake/CHANGELOG.md.in
+  ${PROJECT_SOURCE_DIR}/CHANGELOG.md @ONLY)
+
 # - - - - - - - - - - - - - - - - - variables - - - - - - - - - - - - - - - -  #
 
 set (CLANG_WARNINGS
@@ -66,10 +78,6 @@ target_include_directories (${PROJECT_NAME} INTERFACE
                             $<INSTALL_INTERFACE:${INCLUDE_DEST}>)
 
 # - - - - - - - - - - - - - - - - - install - - - - - - - - - - - - - - - - -  #
-
-configure_file (
-  ${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}-config-version.cmake.in
-  ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}-config-version.cmake @ONLY)
 
 install (TARGETS ${PROJECT_NAME}
          EXPORT ${PROJECT_NAME}

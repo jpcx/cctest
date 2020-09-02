@@ -27,19 +27,31 @@
 
 MAKEFLAGS += --no-print-directory
 
-all: build/test/testcctest
+# set prefix to /usr/local by default
+ifeq ($(PREFIX),)
+    PREFIX := /usr/local
+endif
+
+all: build
 
 build:
 	mkdir -p $@
+	cmake -B$@
 
 build/test/testcctest: build
-	cmake -B$<
 	cmake --build $< --target testcctest
 
 test: build/test/testcctest
 	./$<
 
+install: build
+	cmake --install $<
+
+uninstall:
+	${RM} -r ${DESTDIR}${PREFIX}/lib/cmake/cctest-0.2.0
+	${RM} -r ${DESTDIR}${PREFIX}/include/cctest-0.2.0
+
 clean:
 	${RM} -r build
 
-.PHONY: all test clean
+.PHONY: all test install uninstall clean
