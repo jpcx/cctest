@@ -25,33 +25,5 @@
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-MAKEFLAGS += --no-print-directory
-
-# set prefix to /usr/local by default
-ifeq ($(PREFIX),)
-    PREFIX := /usr/local
-endif
-
-all: build
-
-build:
-	mkdir -p $@
-	cmake -B$@
-
-build/test/testcctest: build
-	cmake --build $< --target testcctest
-
-test: build/test/testcctest
-	./$<
-
-install: build
-	cmake --install $<
-
-uninstall:
-	${RM} -r ${DESTDIR}${PREFIX}/lib/cmake/cctest-0.2.0
-	${RM} -r ${DESTDIR}${PREFIX}/include/cctest-0.2.0
-
-clean:
-	${RM} -r build
-
-.PHONY: all test install uninstall clean
+get_filename_component (SELF_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include (${SELF_DIR}/cctest.cmake)

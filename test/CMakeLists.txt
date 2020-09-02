@@ -25,33 +25,9 @@
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-MAKEFLAGS += --no-print-directory
+add_executable(test${PROJECT_NAME} test${PROJECT_NAME}.cc)
+target_link_libraries(test${PROJECT_NAME} ${PROJECT_NAME})
 
-# set prefix to /usr/local by default
-ifeq ($(PREFIX),)
-    PREFIX := /usr/local
-endif
-
-all: build
-
-build:
-	mkdir -p $@
-	cmake -B$@
-
-build/test/testcctest: build
-	cmake --build $< --target testcctest
-
-test: build/test/testcctest
-	./$<
-
-install: build
-	cmake --install $<
-
-uninstall:
-	${RM} -r ${DESTDIR}${PREFIX}/lib/cmake/cctest-0.2.0
-	${RM} -r ${DESTDIR}${PREFIX}/include/cctest-0.2.0
-
-clean:
-	${RM} -r build
-
-.PHONY: all test install uninstall clean
+add_custom_target(test
+  COMMAND ${CMAKE_BINARY_DIR}/test/testcctest
+  DEPENDS test${PROJECT_NAME})

@@ -26,7 +26,7 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.  ////
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <cctest/cctest.h>
+#include <cctest.h>
 
 using namespace cctest;
 #define dsc(...) "[cctest] " __VA_ARGS__
@@ -40,8 +40,8 @@ namespace construction {
 
 test empty{};
 test descr{dsc("description-based construction")};
-test assign    = dsc("implicit assignment construction");
-test copy      = test{};
+test assign = dsc("implicit assignment construction");
+test copy = test{};
 test copydescr = test{dsc("copy-assignment with description")};
 
 namespace static_ {
@@ -161,7 +161,4 @@ TEST(cctest.macros, "facilitates static + dynamic scopes") << [] {
   CLOSE_SCOPE;
 };
 
-int
-main(int, char **) {
-  cctest::success();
-}
+int main(int, char **) { cctest::success(); }
