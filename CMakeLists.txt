@@ -29,14 +29,14 @@
 
 cmake_minimum_required (VERSION 3.0)
 project (cctest
-         VERSION 0.2.0
+         VERSION 0.2.1
          DESCRIPTION "a small static/dynamic testing framework for C++17"
          HOMEPAGE_URL "https://github.com/jpcx/cctest"
          LANGUAGES CXX)
 
 configure_file (
   ${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}-config-version.cmake.in
-  ${PROJECT_SOURCE_DIR}/${PROJECT_NAME}-config-version.cmake @ONLY)
+  ${PROJECT_SOURCE_DIR}/cmake/${PROJECT_NAME}-config-version.cmake @ONLY)
 
 configure_file (
   ${PROJECT_SOURCE_DIR}/cmake/README.md.in

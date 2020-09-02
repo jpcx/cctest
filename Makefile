@@ -48,10 +48,16 @@ install: build
 	cmake --install $<
 
 uninstall:
-	${RM} -r ${DESTDIR}${PREFIX}/lib/cmake/cctest-0.2.0
-	${RM} -r ${DESTDIR}${PREFIX}/include/cctest-0.2.0
+	${RM} -r ${DESTDIR}${PREFIX}/lib/cmake/cctest-0.2.1
+	${RM} -r ${DESTDIR}${PREFIX}/include/cctest-0.2.1
 
 clean:
 	${RM} -r build
 
-.PHONY: all test install uninstall clean
+clean-all:
+	${RM} -r build
+	${RM} cmake/cctest-config-version.cmake
+	${RM} CHANGELOG.md
+	${RM} README.md
+
+.PHONY: all test install uninstall clean-all

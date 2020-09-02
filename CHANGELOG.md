@@ -1,6 +1,12 @@
 # Changelog
 
-## [Upcoming](https://github.com/jpcx/cctest/compare/0.2.0...devel)
+## [Upcoming](https://github.com/jpcx/cctest/compare/0.2.1...devel)
+
+## [0.2.1](https://github.com/jpcx/cctest/releases/tag/0.2.1) \[[diff](https://github.com/jpcx/cctest/compare/0.2.0...0.2.1)\]
+
+### Changed
+
+- fixed versioning configure file destination
 
 ## [0.2.0](https://github.com/jpcx/cctest/releases/tag/0.2.0) \[[diff](https://github.com/jpcx/cctest/compare/0.1.5...0.2.0)\]
 
