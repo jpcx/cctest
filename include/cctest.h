@@ -349,7 +349,7 @@ struct test {
   template <
       class Result,
       std::enable_if_t<detail_::is_static_result_type<Result>> * = nullptr>
-  constexpr inline const test &operator<<(Result &&) const noexcept {
+  inline constexpr const test &operator<<(Result &&) const noexcept {
     static_assert(detail_::nocvref<Result>::value);
     return *this;
   }
@@ -358,7 +358,7 @@ struct test {
   template <
       class Result,
       std::enable_if_t<detail_::is_static_result_type<Result>> * = nullptr>
-  constexpr inline test &operator<<(Result &&) noexcept {
+  inline constexpr test &operator<<(Result &&) noexcept {
     static_assert(detail_::nocvref<Result>::value);
     return *this;
   }
@@ -367,7 +367,7 @@ struct test {
   template <
       class Pred,
       std::enable_if_t<detail_::is_static_result_predicate<Pred>> * = nullptr>
-  constexpr inline const test &operator<<(Pred &&pred) const noexcept {
+  inline constexpr const test &operator<<(Pred &&pred) const noexcept {
     static_assert(detail_::nocvref<decltype(pred())>::value);
     return *this;
   }
@@ -376,7 +376,7 @@ struct test {
   template <
       class Pred,
       std::enable_if_t<detail_::is_static_result_predicate<Pred>> * = nullptr>
-  constexpr inline test &operator<<(Pred &&pred) noexcept {
+  inline constexpr test &operator<<(Pred &&pred) noexcept {
     static_assert(detail_::nocvref<decltype(pred())>::value);
     return *this;
   }
@@ -384,7 +384,7 @@ struct test {
   /// assert true; void functions are static passes
   template <class Void,
             std::enable_if_t<detail_::is_static_pass_void<Void>> * = nullptr>
-  constexpr inline const test &operator<<(Void &&) const noexcept {
+  inline constexpr const test &operator<<(Void &&) const noexcept {
     static_assert(true);
     return *this;
   }
@@ -392,7 +392,7 @@ struct test {
   /// assert true; void functions are static passes
   template <class Void,
             std::enable_if_t<detail_::is_static_pass_void<Void>> * = nullptr>
-  constexpr inline test &operator<<(Void &&) noexcept {
+  inline constexpr test &operator<<(Void &&) noexcept {
     static_assert(true);
     return *this;
   }
@@ -421,7 +421,7 @@ struct test {
   template <
       class Pred,
       std::enable_if_t<detail_::is_dynamic_result_predicate<Pred>> * = nullptr>
-  constexpr inline const test &operator<<(Pred &&pred) const noexcept {
+  inline constexpr const test &operator<<(Pred &&pred) const noexcept {
     if (!pred().value)
       dynamic_fail();
     return *this;
@@ -431,7 +431,7 @@ struct test {
   template <
       class Pred,
       std::enable_if_t<detail_::is_dynamic_result_predicate<Pred>> * = nullptr>
-  constexpr inline test &operator<<(Pred &&pred) noexcept {
+  inline constexpr test &operator<<(Pred &&pred) noexcept {
     if (!pred().value)
       dynamic_fail();
     return *this;
@@ -450,7 +450,7 @@ private:
   /// logs the test record from either the member description or argument
   /// @private
   template <bool use_member = true>
-  void print_attempt(
+  inline void print_attempt(
       const std::string_view &provided_description = "") const noexcept {
     std::cout << "\033[90mtest\033[0m " << ([&]() {
       if constexpr (use_member)
@@ -475,7 +475,7 @@ private:
 /// @endcode
 template <class Rhs,
           std::enable_if_t<detail_::is_static_resulter<Rhs>> * = nullptr>
-constexpr inline test operator<<(const std::string_view &description,
+inline constexpr test operator<<(const std::string_view &description,
                                  Rhs &&rhs) {
   test cs{description};
   return cs << rhs;
@@ -507,32 +507,32 @@ struct static_pass_type {
   /// operator&& overload for boolean logic
   template <class Rhs,
             std::enable_if_t<detail_::is_static_result_type<Rhs>> * = nullptr>
-  constexpr inline auto operator&&(Rhs) const noexcept
+  inline constexpr auto operator&&(Rhs) const noexcept
       -> std::conditional_t<detail_::is_static_pass_type<Rhs>,
                             static_pass_type &, static_fail_type>;
 
   /// operator|| overload for boolean logic
   template <class Rhs,
             std::enable_if_t<detail_::is_static_result_type<Rhs>> * = nullptr>
-  constexpr inline auto operator||(Rhs) const noexcept -> static_pass_type;
+  inline constexpr auto operator||(Rhs) const noexcept -> static_pass_type;
 
   /// operator! overload for boolean logic
-  constexpr inline auto operator!() const noexcept -> static_fail_type;
+  inline constexpr auto operator!() const noexcept -> static_fail_type;
 
   /// operator== overload for boolean comparison
-  constexpr inline auto operator==(bool cmp) const noexcept { return cmp; }
+  inline constexpr auto operator==(bool cmp) const noexcept { return cmp; }
 
   /// operator== overload for boolean comparison
-  friend constexpr inline auto operator==(bool cmp,
+  inline friend constexpr auto operator==(bool cmp,
                                           static_pass_type &) noexcept {
     return cmp;
   }
 
   /// operator!= overload for boolean comparison
-  constexpr inline auto operator!=(bool cmp) const noexcept { return !cmp; }
+  inline constexpr auto operator!=(bool cmp) const noexcept { return !cmp; }
 
   /// operator!= overload for boolean comparison
-  friend constexpr inline auto operator!=(bool cmp,
+  inline friend constexpr auto operator!=(bool cmp,
                                           static_pass_type &) noexcept {
     return !cmp;
   }
@@ -548,32 +548,32 @@ struct static_fail_type {
   /// operator&& overload for boolean logic
   template <class Rhs,
             std::enable_if_t<detail_::is_static_result_type<Rhs>> * = nullptr>
-  constexpr inline auto operator&&(Rhs) const noexcept -> static_fail_type;
+  inline constexpr auto operator&&(Rhs) const noexcept -> static_fail_type;
 
   /// operator|| overload for boolean logic
   template <class Rhs,
             std::enable_if_t<detail_::is_static_result_type<Rhs>> * = nullptr>
-  constexpr inline auto operator||(Rhs) const noexcept
+  inline constexpr auto operator||(Rhs) const noexcept
       -> std::conditional_t<detail_::is_static_pass_type<Rhs>, static_pass_type,
                             static_fail_type &>;
 
   /// operator! overload for boolean logic
-  constexpr inline auto operator!() const noexcept -> static_pass_type;
+  inline constexpr auto operator!() const noexcept -> static_pass_type;
 
   /// operator== overload for boolean comparison
-  constexpr inline auto operator==(bool cmp) const noexcept { return !cmp; }
+  inline constexpr auto operator==(bool cmp) const noexcept { return !cmp; }
 
   /// operator== overload for boolean comparison
-  friend constexpr inline auto operator==(bool cmp,
+  inline friend constexpr auto operator==(bool cmp,
                                           static_fail_type &) noexcept {
     return !cmp;
   }
 
   /// operator!= overload for boolean comparison
-  constexpr inline auto operator!=(bool cmp) const noexcept { return cmp; }
+  inline constexpr auto operator!=(bool cmp) const noexcept { return cmp; }
 
   /// operator!= overload for boolean comparison
-  friend constexpr inline auto operator!=(bool cmp,
+  inline friend constexpr auto operator!=(bool cmp,
                                           static_fail_type &) noexcept {
     return cmp;
   }
@@ -584,7 +584,7 @@ struct static_fail_type {
 
 /// operator&& overload for boolean logic
 template <class Rhs, std::enable_if_t<detail_::is_static_result_type<Rhs>> *>
-constexpr inline auto static_pass_type::operator&&(Rhs) const noexcept
+inline constexpr auto static_pass_type::operator&&(Rhs) const noexcept
     -> std::conditional_t<detail_::is_static_pass_type<Rhs>, static_pass_type &,
                           static_fail_type> {
   if constexpr (detail_::is_static_pass_type<Rhs>) {
@@ -596,13 +596,13 @@ constexpr inline auto static_pass_type::operator&&(Rhs) const noexcept
 
 /// operator|| overload for boolean logic
 template <class Rhs, std::enable_if_t<detail_::is_static_result_type<Rhs>> *>
-constexpr inline auto static_pass_type::operator||(Rhs) const noexcept
+inline constexpr auto static_pass_type::operator||(Rhs) const noexcept
     -> static_pass_type {
   return *this;
 }
 
 /// operator! overload for boolean logic
-constexpr inline auto static_pass_type::operator!() const noexcept
+inline constexpr auto static_pass_type::operator!() const noexcept
     -> static_fail_type {
   return static_fail_type{};
 }
@@ -612,14 +612,14 @@ constexpr inline auto static_pass_type::operator!() const noexcept
 
 /// operator&& overload for boolean logic
 template <class Rhs, std::enable_if_t<detail_::is_static_result_type<Rhs>> *>
-constexpr inline auto static_fail_type::operator&&(Rhs) const noexcept
+inline constexpr auto static_fail_type::operator&&(Rhs) const noexcept
     -> static_fail_type {
   return *this;
 }
 
 /// operator|| overload for boolean logic
 template <class Rhs, std::enable_if_t<detail_::is_static_result_type<Rhs>> *>
-constexpr inline auto static_fail_type::operator||(Rhs) const noexcept
+inline constexpr auto static_fail_type::operator||(Rhs) const noexcept
     -> std::conditional_t<detail_::is_static_pass_type<Rhs>, static_pass_type,
                           static_fail_type &> {
   if constexpr (detail_::is_static_pass_type<Rhs>) {
@@ -630,7 +630,7 @@ constexpr inline auto static_fail_type::operator||(Rhs) const noexcept
 }
 
 /// operator! overload for boolean logic
-constexpr inline auto static_fail_type::operator!() const noexcept
+inline constexpr auto static_fail_type::operator!() const noexcept
     -> static_pass_type {
   return static_pass_type{};
 }
@@ -661,7 +661,7 @@ struct dynamic_result_type {
   inline bool operator==(bool cmp) const noexcept { return value == cmp; }
 
   /// operator== overload for boolean comparison
-  friend inline auto operator==(bool cmp,
+  inline friend auto operator==(bool cmp,
                                 const dynamic_result_type &object) noexcept {
     return cmp == object.value;
   }
@@ -670,7 +670,7 @@ struct dynamic_result_type {
   inline bool operator!=(bool cmp) const noexcept { return value != cmp; }
 
   /// operator!= overload for boolean comparison
-  friend inline auto operator!=(bool cmp,
+  inline friend auto operator!=(bool cmp,
                                 const dynamic_result_type &object) noexcept {
     return cmp != object.value;
   }
@@ -681,11 +681,13 @@ struct dynamic_result_type {
 
 /// creates a `static_pass_type` or `static_fail_type` depending on `cond`
 template <bool cond>
-constexpr std::conditional_t<cond, static_pass_type, static_fail_type>
+inline constexpr std::conditional_t<cond, static_pass_type, static_fail_type>
     static_require;
 
 /// creates a `dynamic_result_type` loaded with the value of `cond`
-constexpr dynamic_result_type dynamic_require(bool cond) { return {cond}; }
+inline constexpr dynamic_result_type dynamic_require(bool cond) {
+  return {cond};
+}
 
 /*.----------------------------------------------------------------------------,
  /                   main execution success message logger                   */
@@ -701,14 +703,14 @@ inline void success() noexcept {
  /                     live test result semantic objects                     */
 
 /// represents a static test pass result
-constexpr static_pass_type static_pass;
+inline constexpr static_pass_type static_pass;
 /// represents a static test fail result
-constexpr static_fail_type static_fail;
+inline constexpr static_fail_type static_fail;
 
 /// represents a dynamic test pass result
-const dynamic_result_type dynamic_pass{true};
+inline const dynamic_result_type dynamic_pass{true};
 /// represents a dynamic test fail result
-const dynamic_result_type dynamic_fail{false};
+inline const dynamic_result_type dynamic_fail{false};
 
 } // namespace cctest
 

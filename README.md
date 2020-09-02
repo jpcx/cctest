@@ -1,4 +1,4 @@
-# cctest 0.2.3 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.2.3/CHANGELOG.md)
+# cctest 0.3.0 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.3.0/CHANGELOG.md)
 
 ```
              __                   __
@@ -30,7 +30,7 @@ Copy `include/cctest.h` into your project or use one of these methods:
 ### Standard -I
 
 ```shell
-git clone -b 0.2.3 https://github.com/jpcx/cctest.git
+git clone -b 0.3.0 https://github.com/jpcx/cctest.git
 ```
 ```makefile
 CXXFLAGS += -I[cctest download dir]/include
@@ -39,18 +39,18 @@ CXXFLAGS += -I[cctest download dir]/include
 ### CMake Install
 
 ```shell
-git clone -b 0.2.3 https://github.com/jpcx/cctest.git
+git clone -b 0.3.0 https://github.com/jpcx/cctest.git
 cd cctest
 
 make # mkdir build
      # cmake -Bbuild
 
-# installs header to      ${DESTDIR}${PREFIX}/include/cctest-0.2.3
-# installs cmake files to ${DESTDIR}${PREFIX}/lib/cmake/cctest-0.2.3
+# installs header to      ${DESTDIR}${PREFIX}/include/cctest-0.3.0
+# installs cmake files to ${DESTDIR}${PREFIX}/lib/cmake/cctest-0.3.0
 sudo make install # cmake --install build
 ```
 ```cmake
-find_package(cctest 0.2 REQUIRED)
+find_package(cctest 0.3 REQUIRED)
 target_link_libraries([your target] cctest)
 ```
 
@@ -60,7 +60,7 @@ target_link_libraries([your target] cctest)
 include(FetchContent)
 FetchContent_Declare(cctest
                      GIT_REPOSITORY https://github.com/jpcx/cctest.git
-                     GIT_TAG "0.2.3")
+                     GIT_TAG "0.3.0")
 FetchContent_MakeAvailable(cctest)
 target_link_libraries([your target] cctest)
 ```
@@ -68,7 +68,7 @@ target_link_libraries([your target] cctest)
 ### CMake add_subdirectory
 
 ```shell
-git clone -b 0.2.3 https://github.com/jpcx/cctest.git # or git submodule add
+git clone -b 0.3.0 https://github.com/jpcx/cctest.git # or git submodule add
 ```
 ```cmake
 add_subdirectory([cctest download dir])

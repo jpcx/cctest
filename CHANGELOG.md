@@ -1,6 +1,12 @@
 # Changelog
 
-## [Upcoming](https://github.com/jpcx/cctest/compare/0.2.3...devel)
+## [Upcoming](https://github.com/jpcx/cctest/compare/0.3.0...devel)
+
+## [0.3.0](https://github.com/jpcx/cctest/releases/tag/0.3.0) \[[diff](https://github.com/jpcx/cctest/compare/0.2.3...0.3.0)\]
+
+### Changed
+
+- made result variables inline, normalized specifier order
 
 ## [0.2.3](https://github.com/jpcx/cctest/releases/tag/0.2.3) \[[diff](https://github.com/jpcx/cctest/compare/0.2.2...0.2.3)\]
 
