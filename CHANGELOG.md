@@ -2,7 +2,13 @@
 
 ## [Upcoming](https://github.com/jpcx/cctest/compare/0.4.0...devel)
 
-## [0.4.0](https://github.com/jpcx/cctest/releases/tag/0.4.0) \[[diff](https://github.com/jpcx/cctest/compare/0.2.3...0.4.0)\]
+## [0.4.0](https://github.com/jpcx/cctest/releases/tag/0.4.0) \[[diff](https://github.com/jpcx/cctest/compare/0.3.0...0.4.0)\]
+
+### Changed
+
+- moved C++17 requirement check from CMake to header
+
+## [0.3.0](https://github.com/jpcx/cctest/releases/tag/0.3.0) \[[diff](https://github.com/jpcx/cctest/compare/0.2.3...0.3.0)\]
 
 ### Changed
 
