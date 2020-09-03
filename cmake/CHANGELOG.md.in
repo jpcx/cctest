@@ -2,7 +2,13 @@
 
 ## [Upcoming](https://github.com/jpcx/cctest/compare/@PROJECT_VERSION@...devel)
 
-## [@PROJECT_VERSION@](https://github.com/jpcx/cctest/releases/tag/@PROJECT_VERSION@) \[[diff](https://github.com/jpcx/cctest/compare/0.3.0...@PROJECT_VERSION@)\]
+## [@PROJECT_VERSION@](https://github.com/jpcx/cctest/releases/tag/@PROJECT_VERSION@) \[[diff](https://github.com/jpcx/cctest/compare/0.4.0...@PROJECT_VERSION@)\]
+
+### Changed
+
+- removed test from default target
+
+## [0.4.0](https://github.com/jpcx/cctest/releases/tag/0.4.1) \[[diff](https://github.com/jpcx/cctest/compare/0.3.0...0.4.0)\]
 
 ### Changed
 
