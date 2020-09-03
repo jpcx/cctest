@@ -34,7 +34,8 @@ target_compile_options(test${PROJECT_NAME} PRIVATE
                        $<$<CXX_COMPILER_ID:Clang>:${CLANG_WARNINGS}>)
 target_link_libraries(test${PROJECT_NAME} ${PROJECT_NAME})
 set_target_properties(test${PROJECT_NAME} PROPERTIES
-                      EXCLUDE_FROM_ALL TRUE)
+                      EXCLUDE_FROM_ALL TRUE
+                      EXCLUDE_FROM_DEFUALT_BUILD TRUE)
 
 add_custom_target(test
   COMMAND ${CMAKE_BINARY_DIR}/test/testcctest
