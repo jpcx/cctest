@@ -29,7 +29,7 @@
 
 cmake_minimum_required (VERSION 3.0)
 project (cctest
-         VERSION 0.4.0
+         VERSION 0.4.1
          DESCRIPTION "a small static/dynamic testing framework for C++17"
          HOMEPAGE_URL "https://github.com/jpcx/cctest"
          LANGUAGES CXX)
