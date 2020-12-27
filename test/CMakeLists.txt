@@ -1,14 +1,13 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# 
 #                __                   __
-#               /\ \__               /\ \__     auto o = "easy!"
-#     ___    ___\ \ ,_\    __    ____\ \ ,_\        << static_pass
-#    /'___\ /'___\ \ \/  /'__`\ /',__\\ \ \/        << dynamic_pass
-#   /\ \__//\ \__/\ \ \_/\  __//\__, `\\ \ \_       << [] {
-#   \ \____\ \____\\ \__\ \____\/\____/ \ \__\           return [...]_pass;
-#    \/____/\/____/ \/__/\/____/\/___/   \/__/         };
+#               /\ \__               /\ \__
+#     ___    ___\ \ ,_\    __    ____\ \ ,_\
+#    /'___\ /'___\ \ \/  /'__`\ /',__\\ \ \/
+#   /\ \__//\ \__/\ \ \_/\  __//\__, `\\ \ \_
+#   \ \____\ \____\\ \__\ \____\/\____/ \ \__\
+#    \/____/\/____/ \/__/\/____/\/___/   \/__/
 # 
-#   cctest C++ Testing
+#   a tiny test framework for C++17
 #   Copyright (C) 2020 Justin Collier <m@jpcx.dev>
 # 
 #     This program is free software: you can redistribute it and/or modify
@@ -25,18 +24,17 @@
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-add_executable(test${PROJECT_NAME} test${PROJECT_NAME}.cc)
+add_executable(test${PROJECT_NAME}
+  test${PROJECT_NAME}.cc
+  test${PROJECT_NAME}.main.cc)
 target_compile_options(test${PROJECT_NAME} PRIVATE
                        ${CMAKE_CXX_FLAGS}
                        -std=c++17
                        $<$<CXX_COMPILER_ID:Clang>:-Weverything>
                        -Werror
+                       -Wno-unused-variable
                        $<$<CXX_COMPILER_ID:Clang>:${CLANG_WARNINGS}>)
 target_link_libraries(test${PROJECT_NAME} ${PROJECT_NAME})
 set_target_properties(test${PROJECT_NAME} PROPERTIES
                       EXCLUDE_FROM_ALL TRUE
                       EXCLUDE_FROM_DEFUALT_BUILD TRUE)
-
-add_custom_target(test
-  COMMAND ${CMAKE_BINARY_DIR}/test/testcctest
-  DEPENDS test${PROJECT_NAME})

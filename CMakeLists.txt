@@ -1,14 +1,13 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# 
 #                __                   __
-#               /\ \__               /\ \__     auto o = "easy!"
-#     ___    ___\ \ ,_\    __    ____\ \ ,_\        << static_pass
-#    /'___\ /'___\ \ \/  /'__`\ /',__\\ \ \/        << dynamic_pass
-#   /\ \__//\ \__/\ \ \_/\  __//\__, `\\ \ \_       << [] {
-#   \ \____\ \____\\ \__\ \____\/\____/ \ \__\           return [...]_pass;
-#    \/____/\/____/ \/__/\/____/\/___/   \/__/         };
+#               /\ \__               /\ \__
+#     ___    ___\ \ ,_\    __    ____\ \ ,_\
+#    /'___\ /'___\ \ \/  /'__`\ /',__\\ \ \/
+#   /\ \__//\ \__/\ \ \_/\  __//\__, `\\ \ \_
+#   \ \____\ \____\\ \__\ \____\/\____/ \ \__\
+#    \/____/\/____/ \/__/\/____/\/___/   \/__/
 # 
-#   cctest C++ Testing
+#   a tiny test framework for C++17
 #   Copyright (C) 2020 Justin Collier <m@jpcx.dev>
 # 
 #     This program is free software: you can redistribute it and/or modify
@@ -29,7 +28,7 @@
 
 cmake_minimum_required (VERSION 3.0)
 project (cctest
-         VERSION 0.4.2
+         VERSION 0.5.0
          DESCRIPTION "a small static/dynamic testing framework for C++17"
          HOMEPAGE_URL "https://github.com/jpcx/cctest"
          LANGUAGES CXX)
@@ -46,14 +45,21 @@ configure_file (
   ${PROJECT_SOURCE_DIR}/cmake/CHANGELOG.md.in
   ${PROJECT_SOURCE_DIR}/CHANGELOG.md @ONLY)
 
+configure_file (
+  ${PROJECT_SOURCE_DIR}/cmake/Makefile.in
+  ${PROJECT_SOURCE_DIR}/Makefile @ONLY)
+
 # - - - - - - - - - - - - - - - - - variables - - - - - - - - - - - - - - - -  #
 
 set (CLANG_WARNINGS
+     -Wno-unused-macros
+     -Wno-padded
      -Wno-c++98-c++11-compat
      -Wno-c++98-compat
      -Wno-c++98-compat-pedantic
      -Wno-missing-variable-declarations
      -Wno-global-constructors
+     -Wno-exit-time-destructors
      -Wno-documentation-unknown-command)
 
 set (INCLUDE_DEST "include/${PROJECT_NAME}-${PROJECT_VERSION}")

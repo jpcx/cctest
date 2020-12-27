@@ -2,11 +2,34 @@
 
 ## [Upcoming](https://github.com/jpcx/cctest/compare/@PROJECT_VERSION@...devel)
 
-## [@PROJECT_VERSION@](https://github.com/jpcx/cctest/releases/tag/@PROJECT_VERSION@) \[[diff](https://github.com/jpcx/cctest/compare/0.4.1...@PROJECT_VERSION@)\]
+## [@PROJECT_VERSION@](https://github.com/jpcx/cctest/releases/tag/@PROJECT_VERSION@) \[[diff](https://github.com/jpcx/cctest/compare/0.4.2...@PROJECT_VERSION@)\]
+
+__note:__ The API has been decomplicated and most functionality has been modified.
 
 ### Changed
 
-- added EXCLUDE_FROM_DEFUALT_BUILD to test target for compatibility
+- various semantic and formatting fixes
+- `TEST` macro now automatically opens a scope and only accepts one argument
+  - example: `TEST("my test") { ASSERT(true); };`
+- All test bodies are now void; throw an exception to fail the test.
+- thread safety has been added.
+
+### Added
+
+- exceptions thrown within a dynamic predicate are now tracked and printed
+- file and line numbers are now tracked when using `TEST`
+- added `ASSERT` and `ASSERT_THROWS` macros
+
+### Removed
+
+- removed all static/dynamic test seperation and associated functionality
+- removed separate documentation; README is sufficient
+
+## [0.4.2](https://github.com/jpcx/cctest/releases/tag/0.4.2) \[[diff](https://github.com/jpcx/cctest/compare/0.4.1...0.4.2)\]
+
+### Changed
+
+- added `EXCLUDE_FROM_DEFUALT_BUILD` to test target for compatibility
 - fixed Changelog typo
 
 ## [0.4.1](https://github.com/jpcx/cctest/releases/tag/0.4.1) \[[diff](https://github.com/jpcx/cctest/compare/0.4.0...0.4.1)\]
@@ -38,7 +61,7 @@
 ### Changed
 
 - added `clean` target to `.PHONY` 
-- removed patch version from find_package documentation
+- removed patch version from find\_package documentation
 
 ## [0.2.1](https://github.com/jpcx/cctest/releases/tag/0.2.1) \[[diff](https://github.com/jpcx/cctest/compare/0.2.0...0.2.1)\]
 
