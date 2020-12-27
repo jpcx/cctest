@@ -1,2 +1,8 @@
-# cctest master submodule directory for gh-pages
-master
+# cache directory
+.cache
+
+# compile commands
+compile_commands.json
+
+# build directory
+build

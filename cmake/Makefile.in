@@ -47,8 +47,8 @@ install: build
 	cmake --install $<
 
 uninstall:
-	${RM} -r ${DESTDIR}${PREFIX}/lib/cmake/cctest-0.5.0
-	${RM} -r ${DESTDIR}${PREFIX}/include/cctest-0.5.0
+	${RM} -r ${DESTDIR}${PREFIX}/lib/cmake/cctest-@PROJECT_VERSION@
+	${RM} -r ${DESTDIR}${PREFIX}/include/cctest-@PROJECT_VERSION@
 
 clean:
 	${RM} -r build
