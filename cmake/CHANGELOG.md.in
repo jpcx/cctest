@@ -7,6 +7,11 @@
 ### Changed
 
 - Updated copyright year
+- Improved documentation
+
+### Added
+
+- added built-in `#pragma`-based warning ignores
 
 ## [0.5.0](https://github.com/jpcx/cctest/releases/tag/0.5.0) \[[diff](https://github.com/jpcx/cctest/compare/0.4.2...0.5.0)\]
 
