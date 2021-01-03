@@ -1,64 +1,83 @@
 #ifndef CCTEST_H_INCLUDED
 #define CCTEST_H_INCLUDED
-/////                                                                      c++17
-////////////////////////////////////////////////////////////////////////////////
-/// @file
-//               __                   __
-//              /\ \__               /\ \__
-//    ___    ___\ \ ,_\    __    ____\ \ ,_\
-//   /'___\ /'___\ \ \/  /'__`\ /',__\\ \ \/
-//  /\ \__//\ \__/\ \ \_/\  __//\__, `\\ \ \_
-//  \ \____\ \____\\ \__\ \____\/\____/ \ \__\
-//   \/____/\/____/ \/__/\/____/\/___/   \/__/
-//
-//  a tiny test framework for C++17
-//  Copyright (C) 2020 Justin Collier <m@jpcx.dev>
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the internalied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//                                                                            //
-//  You should have received a copy of the GNU General Public License        ///
-//  along with this program.  If not, see <https://www.gnu.org/licenses/>.  ////
-////////////////////////////////////////////////////////////////////////////////
+/*                                                                         C++17
+
+                                __                   __
+                               /\ \__               /\ \__
+                     ___    ___\ \ ,_\    __    ____\ \ ,_\
+                    /'___\ /'___\ \ \/  /'__`\ /',__\\ \ \/
+                   /\ \__//\ \__/\ \ \_/\  __//\__, `\\ \ \_
+                   \ \____\ \____\\ \__\ \____\/\____/ \ \__\
+                    \/____/\/____/ \/__/\/____/\/___/   \/__/
+
+                        a tiny test framework for C++17
+
+    Copyright (C) 2020, 2021 Justin Collier
+
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the internalied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
 #if (!defined(__cplusplus) || __cplusplus < 201703L)
 #error "cctest requires at least C++17"
 #endif
 
-/// @file
-/// @code
+/// \file
+/// \brief cctest is a tiny test framework for C++17 [single-header]
+///
+/// Creating test files:
+///
+/// \code
 ///   #include <cctest.h>
 ///   #include <cstring>
-///
+///   
 ///   TEST("test all the things") {
 ///     static_assert(true, "use static_assert wherever possible!");
-///     ASSERT(1 == 1);
-///     auto e = ASSERT_THROWS(std::runtime_error) {
+///     ASSERT(1 == 1); // make a runtime assertion
+///     auto e = ASSERT_THROWS(std::runtime_error) { // returns thrown error by value
 ///       throw std::runtime_error{"hello"};
-///     }
+///     };
 ///     ASSERT(strcmp(e.what(), "hello") == 0);
 ///   };
+///   
+///   TEST("multiple tests per file are OK") {
+///     static_assert(true, "runtime assertions are not required");
+///   };
+/// \endcode
 ///
-/// @endcode
+/// Creating a main file:
 ///
-/// @note use this main structure to print "All Tests Passed!" on compile.
-///       all failures either prevent compilation or terminate execution.
-///
-/// @code
+/// \code
 ///   #define CCTEST_MAIN
 ///   #include <cctest.h>
-/// @endcode
+/// \endcode
+///
+/// Execution:
+///
+/// \code
+///   ${CXX} ${CXXFLAGS} -std=c++17 main.cc test0.cc test1.cc -o test
+///   ./test
+/// \endcode
 
 #include <atomic>
 #include <iostream>
 #include <string_view>
+
+#if defined(__clang__) && __clang__ == 1
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc++98-compat"
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#pragma clang diagnostic ignored "-Wpadded"
+#endif
 
 namespace cctest {
 
@@ -70,13 +89,11 @@ extern std::atomic<int> n_tests_failed;
 
 namespace is_void_fn_ {
 /// sfinae fallback false
-/// @private
 template <class, class = void>
 struct sfinae {
   static constexpr bool result = false;
 };
 /// sfinae valid if F returns void
-/// @private
 template <class F>
 struct sfinae<
     F, std::enable_if_t<std::is_same_v<decltype(std::declval<F>()()), void>>> {
@@ -142,7 +159,6 @@ struct test {
     std::cout << get_description();
   }
   /// logs a failure message
-  /// @private
   void
   fail(std::exception_ptr exception = nullptr) const noexcept {
     ++detail_::n_tests_failed;
@@ -165,7 +181,6 @@ struct test {
     std::cout << descr;
   }
   /// creates an initial description
-  /// @private
   inline std::string
   get_description() const noexcept {
     return std::string{"\n\033[90m>\033[0m "} + description_;
@@ -242,6 +257,10 @@ main(int, char**) {
   }
 }
 #endif
+#endif
+
+#if defined(__clang__) && __clang__ == 1
+#pragma clang diagnostic pop
 #endif
 
 #endif
