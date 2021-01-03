@@ -8,7 +8,7 @@
 #    \/____/\/____/ \/__/\/____/\/___/   \/__/
 # 
 #   a tiny test framework for C++17
-#   Copyright (C) 2020 Justin Collier <m@jpcx.dev>
+#   Copyright (C) 2020, 2021 Justin Collier <m@jpcx.dev>
 # 
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
@@ -28,7 +28,7 @@
 
 cmake_minimum_required (VERSION 3.0)
 project (cctest
-         VERSION 0.5.0
+         VERSION 0.5.1
          DESCRIPTION "a small static/dynamic testing framework for C++17"
          HOMEPAGE_URL "https://github.com/jpcx/cctest"
          LANGUAGES CXX)

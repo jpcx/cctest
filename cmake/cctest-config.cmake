@@ -1,15 +1,15 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # 
 #                __                   __
-#               /\ \__               /\ \__     auto o = "easy!"
-#     ___    ___\ \ ,_\    __    ____\ \ ,_\        << static_pass
-#    /'___\ /'___\ \ \/  /'__`\ /',__\\ \ \/        << dynamic_pass
-#   /\ \__//\ \__/\ \ \_/\  __//\__, `\\ \ \_       << [] {
-#   \ \____\ \____\\ \__\ \____\/\____/ \ \__\           return [...]_pass;
-#    \/____/\/____/ \/__/\/____/\/___/   \/__/         };
+#               /\ \__               /\ \__
+#     ___    ___\ \ ,_\    __    ____\ \ ,_\
+#    /'___\ /'___\ \ \/  /'__`\ /',__\\ \ \/
+#   /\ \__//\ \__/\ \ \_/\  __//\__, `\\ \ \_
+#   \ \____\ \____\\ \__\ \____\/\____/ \ \__\
+#    \/____/\/____/ \/__/\/____/\/___/   \/__/
 # 
-#   cctest C++ Testing
-#   Copyright (C) 2020 Justin Collier <m@jpcx.dev>
+#   a tiny test framework for C++17
+#   Copyright (C) 2020, 2021 Justin Collier <m@jpcx.dev>
 # 
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU General Public License as published by
