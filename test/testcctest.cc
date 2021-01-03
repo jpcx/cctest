@@ -1,30 +1,29 @@
-/////                                                                      c++17
-////////////////////////////////////////////////////////////////////////////////
-/// @file
-//               __                   __
-//              /\ \__               /\ \__
-//    ___    ___\ \ ,_\    __    ____\ \ ,_\
-//   /'___\ /'___\ \ \/  /'__`\ /',__\\ \ \/
-//  /\ \__//\ \__/\ \ \_/\  __//\__, `\\ \ \_
-//  \ \____\ \____\\ \__\ \____\/\____/ \ \__\
-//   \/____/\/____/ \/__/\/____/\/___/   \/__/
-//
-//  a tiny test framework for C++17
-//  Copyright (C) 2020, 2021 Justin Collier <m@jpcx.dev>
-//
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the internalied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//                                                                            //
-//  You should have received a copy of the GNU General Public License        ///
-//  along with this program.  If not, see <https://www.gnu.org/licenses/>.  ////
-////////////////////////////////////////////////////////////////////////////////
+/*                                                                         C++17
+
+                                __                   __
+                               /\ \__               /\ \__
+                     ___    ___\ \ ,_\    __    ____\ \ ,_\
+                    /'___\ /'___\ \ \/  /'__`\ /',__\\ \ \/
+                   /\ \__//\ \__/\ \ \_/\  __//\__, `\\ \ \_
+                   \ \____\ \____\\ \__\ \____\/\____/ \ \__\
+                    \/____/\/____/ \/__/\/____/\/___/   \/__/
+
+                        a tiny test framework for C++17
+
+    Copyright (C) 2020, 2021 Justin Collier
+
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+
+      This program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the internalied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
 #include <chrono>
 #include <string>
@@ -37,6 +36,13 @@ namespace detail_ {
 extern std::atomic<int> n_tests_failed;
 } // namespace detail_
 } // namespace cctest
+
+#if defined(__clang__) && __clang__ == 1
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wc++98-compat"
+#pragma clang diagnostic ignored "-Wexit-time-destructors"
+#pragma clang diagnostic ignored "-Wglobal-constructors"
+#endif
 
 namespace testcctest {
 
@@ -125,3 +131,7 @@ TEST("expected tests failed") {
 };
 
 } // namespace testcctest
+
+#if defined(__clang__) && __clang__ == 1
+#pragma clang diagnostic pop
+#endif

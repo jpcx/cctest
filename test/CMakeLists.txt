@@ -30,9 +30,11 @@ add_executable(test${PROJECT_NAME}
 target_compile_options(test${PROJECT_NAME} PRIVATE
                        ${CMAKE_CXX_FLAGS}
                        -std=c++17
+                       -Wall
+                       -Wextra
+                       -pedantic-errors
                        $<$<CXX_COMPILER_ID:Clang>:-Weverything>
                        -Werror
-                       -Wno-unused-variable
                        $<$<CXX_COMPILER_ID:Clang>:${CLANG_WARNINGS}>)
 target_link_libraries(test${PROJECT_NAME} ${PROJECT_NAME})
 set_target_properties(test${PROJECT_NAME} PROPERTIES

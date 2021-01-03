@@ -51,17 +51,6 @@ configure_file (
 
 # - - - - - - - - - - - - - - - - - variables - - - - - - - - - - - - - - - -  #
 
-set (CLANG_WARNINGS
-     -Wno-unused-macros
-     -Wno-padded
-     -Wno-c++98-c++11-compat
-     -Wno-c++98-compat
-     -Wno-c++98-compat-pedantic
-     -Wno-missing-variable-declarations
-     -Wno-global-constructors
-     -Wno-exit-time-destructors
-     -Wno-documentation-unknown-command)
-
 set (INCLUDE_DEST "include/${PROJECT_NAME}-${PROJECT_VERSION}")
 set (LIB_DEST "lib/cmake/${PROJECT_NAME}-${PROJECT_VERSION}")
 
@@ -69,9 +58,7 @@ set (LIB_DEST "lib/cmake/${PROJECT_NAME}-${PROJECT_VERSION}")
 
 add_library (${PROJECT_NAME} INTERFACE)
 
-target_compile_options     (${PROJECT_NAME} INTERFACE
-                            ${CMAKE_CXX_FLAGS}
-                            $<$<CXX_COMPILER_ID:Clang>:${CLANG_WARNINGS}>)
+target_compile_options     (${PROJECT_NAME} INTERFACE ${CMAKE_CXX_FLAGS})
 
 target_include_directories (${PROJECT_NAME} INTERFACE 
                             $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>

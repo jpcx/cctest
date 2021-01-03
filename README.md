@@ -8,9 +8,59 @@ __The API has been simplified since 0.4.2. Please check the usage instructions a
 
 cctest is thread-safe; one atomic counter is used and each test calls `cout` only once.
 
+## Usage
+
+Creating a main file (may be seperate or as part of a test source):
+
+```cpp
+#define CCTEST_MAIN
+#include <cctest.h>
+```
+
+Creating test files:
+
+```cpp
+#include <cctest.h>
+#include <cstring>
+
+TEST("test all the things") {
+  static_assert(true, "use static_assert wherever possible!");
+  ASSERT(1 == 1); // make a runtime assertion
+  auto e = ASSERT_THROWS(std::runtime_error) { // returns thrown error by value
+    throw std::runtime_error{"hello"};
+  };
+  ASSERT(strcmp(e.what(), "hello") == 0);
+};
+
+TEST("multiple tests per file are OK") {
+  static_assert(true, "runtime assertions are not required");
+};
+```
+
+Execution:
+
+``` shell
+${CXX} ${CXXFLAGS} -std=c++17 main.cc test0.cc test1.cc -o test
+./test
+
+ > this test passes
+ > another passing test
+ > sample fail test
+     FAIL /path/to/src.cc:50
+     what: this is an expected failure
+
+ > tests continue after runtime failure
+
+1 Test Failed
+```
+
 ## Setup
 
-Copy `include/cctest.h` into your project and include it or use one of these methods:
+### Standalone Header (recommended)
+
+Simply copy `include/cctest.h` into your project and include it.
+
+Compiler warnings
 
 ### CMake Install
 
@@ -49,45 +99,6 @@ git clone -b 0.5.1 https://github.com/jpcx/cctest.git # or git submodule add
 ```cmake
 add_subdirectory([cctest download dir])
 target_link_libraries([your target] cctest)
-```
-
-## Usage
-
-```cpp
-#include <cctest.h>
-#include <cstring>
-
-TEST("test all the things") {
-  static_assert(true, "use static_assert wherever possible!");
-  ASSERT(1 == 1);
-  auto e = ASSERT_THROWS(std::runtime_error) {
-    throw std::runtime_error{"hello"};
-  };
-  ASSERT(strcmp(e.what(), "hello") == 0);
-};
-```
-
-A main file must be created as well; use it to print a success mesage
-
-```cpp
-#define CCTEST_MAIN
-#include <cctest.h>
-```
-
-## Preview
-
-``` shell
-./path/to/test
-
- > this test passes
- > another passing test
- > sample fail test
-     FAIL /path/to/src.cc:50
-     what: this is an expected failure
-
- > tests continue after failure
-
-1 Test Failed
 ```
 
 ## Testing
