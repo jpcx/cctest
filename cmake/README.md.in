@@ -60,7 +60,10 @@ ${CXX} ${CXXFLAGS} -std=c++17 main.cc test0.cc test1.cc -o test
 
 Simply copy `include/cctest.h` into your project and include it.
 
-Compiler warnings
+__note:__  
+There should be no compiler warnings for GCC or Clang with `-Wall -Wextra -pedantic`.
+Additionally, `#pragma` statements are used to filter Clang's `-Weverything`,
+so plain inclusion should be fine in most cases.
 
 ### CMake Install
 
