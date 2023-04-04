@@ -1,12 +1,10 @@
-# cctest 0.5.1 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.5.1/CHANGELOG.md)
+# cctest 0.5.2 | [_API Docs_](http://jpcx.github.io/cctest/cctest_8h.html) | [_CHANGELOG_](https://github.com/jpcx/cctest/blob/0.5.2/CHANGELOG.md)
 
 ## About
 
 cctest is a tiny test framework for C++17.  
 
 __The API has been simplified since 0.4.2. Please check the usage instructions and CHANGELOG.__
-
-cctest is thread-safe; one atomic counter is used and each test calls `cout` only once.
 
 ## Usage
 
@@ -36,6 +34,8 @@ TEST("multiple tests per file are OK") {
   static_assert(true, "runtime assertions are not required");
 };
 ```
+
+_Note: cctest is thread safe, but most tests should be defined at namespace or global scope._
 
 Execution:
 
@@ -68,14 +68,14 @@ so simple inclusion should be fine in most cases.
 ### CMake Install
 
 ```shell
-git clone -b 0.5.1 https://github.com/jpcx/cctest.git
+git clone -b 0.5.2 https://github.com/jpcx/cctest.git
 cd cctest
 
 make # mkdir build
      # cmake -Bbuild
 
-# installs header to      ${DESTDIR}${PREFIX}/include/cctest-0.5.1
-# installs cmake files to ${DESTDIR}${PREFIX}/lib/cmake/cctest-0.5.1
+# installs header to      ${DESTDIR}${PREFIX}/include/cctest-0.5.2
+# installs cmake files to ${DESTDIR}${PREFIX}/lib/cmake/cctest-0.5.2
 sudo make install # cmake --install build
 ```
 ```cmake
@@ -89,7 +89,7 @@ target_link_libraries([your target] cctest)
 include(FetchContent)
 FetchContent_Declare(cctest
                      GIT_REPOSITORY https://github.com/jpcx/cctest.git
-                     GIT_TAG "0.5.1")
+                     GIT_TAG "0.5.2")
 FetchContent_MakeAvailable(cctest)
 target_link_libraries([your target] cctest)
 ```
@@ -97,7 +97,7 @@ target_link_libraries([your target] cctest)
 ### CMake add\_subdirectory
 
 ```shell
-git clone -b 0.5.1 https://github.com/jpcx/cctest.git # or git submodule add
+git clone -b 0.5.2 https://github.com/jpcx/cctest.git # or git submodule add
 ```
 ```cmake
 add_subdirectory([cctest download dir])

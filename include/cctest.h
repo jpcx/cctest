@@ -12,7 +12,7 @@
 
                         a tiny test framework for C++17
 
-    Copyright (C) 2020, 2021 Justin Collier
+    Copyright (C) 2020-2023 Justin Collier
 
       This program is free software: you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
       (at your option) any later version.
 
       This program is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the internalied warranty of
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
       GNU General Public License for more details.
 
@@ -39,16 +39,16 @@
 /// \code
 ///   #include <cctest.h>
 ///   #include <cstring>
-///   
+///
 ///   TEST("test all the things") {
 ///     static_assert(true, "use static_assert wherever possible!");
 ///     ASSERT(1 == 1); // make a runtime assertion
-///     auto e = ASSERT_THROWS(std::runtime_error) { // returns thrown error by value
+///     auto e = ASSERT_THROWS(std::runtime_error) { // returns error by value
 ///       throw std::runtime_error{"hello"};
 ///     };
 ///     ASSERT(strcmp(e.what(), "hello") == 0);
 ///   };
-///   
+///
 ///   TEST("multiple tests per file are OK") {
 ///     static_assert(true, "runtime assertions are not required");
 ///   };
@@ -70,6 +70,7 @@
 
 #include <atomic>
 #include <iostream>
+#include <mutex>
 #include <string_view>
 
 #if defined(__clang__) && __clang__ == 1
@@ -151,11 +152,13 @@ struct test {
   }
 
  private:
-  std::string description_ = "";
-  std::string file_        = "";
-  int line_                = -1;
+  std::string description_        = "";
+  std::string file_               = "";
+  int line_                       = -1;
+  inline static std::mutex m_out_ = {};
   void
   pass() const noexcept {
+    std::scoped_lock<std::mutex> _{m_out_};
     std::cout << get_description();
   }
   /// logs a failure message
@@ -178,7 +181,10 @@ struct test {
       descr += e.what();
       descr += "\n";
     } catch (...) {}
-    std::cout << descr;
+    {
+      std::scoped_lock<std::mutex> _{m_out_};
+      std::cout << descr;
+    }
   }
   /// creates an initial description
   inline std::string
@@ -232,11 +238,9 @@ failure() noexcept {
   static cctest::test CCTEST_IMPL_CAT(test_at_, __LINE__) = \
       cctest::test{_descr, __FILE__, __LINE__} << []
 
-#define ASSERT(...)                     \
-  if (!(__VA_ARGS__))                   \
-    throw std::runtime_error {          \
-      "assertion failed: " #__VA_ARGS__ \
-    }
+#define ASSERT(...)   \
+  if (!(__VA_ARGS__)) \
+    throw std::runtime_error { "assertion failed: " #__VA_ARGS__ }
 #define ASSERT_THROWS(...) cctest::detail_::assert_throws<__VA_ARGS__>{} << [&]
 
 #ifdef CCTEST_MAIN

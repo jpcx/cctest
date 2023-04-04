@@ -1,6 +1,13 @@
 # Changelog
 
-## [Upcoming](https://github.com/jpcx/cctest/compare/0.5.1...devel)
+## [Upcoming](https://github.com/jpcx/cctest/compare/0.5.2...devel)
+
+## [0.5.2](https://github.com/jpcx/cctest/releases/tag/0.5.2) \[[diff](https://github.com/jpcx/cctest/compare/0.5.1...0.5.2)\]
+
+### Changed
+
+- Updated copyright year
+- Fixed thread safety
 
 ## [0.5.1](https://github.com/jpcx/cctest/releases/tag/0.5.1) \[[diff](https://github.com/jpcx/cctest/compare/0.5.0...0.5.1)\]
 

@@ -10,7 +10,7 @@
 
                         a tiny test framework for C++17
 
-    Copyright (C) 2020, 2021 Justin Collier
+    Copyright (C) 2020-2023 Justin Collier
 
       This program is free software: you can redistribute it and/or modify
       it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
       (at your option) any later version.
 
       This program is distributed in the hope that it will be useful,
-      but WITHOUT ANY WARRANTY; without even the internalied warranty of
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
       GNU General Public License for more details.
 
@@ -98,7 +98,7 @@ TEST("\"ASSERT fails expectedly\" fails expectedly") {
   int nbefore = cctest::detail_::n_tests_failed;
   TEST("ASSERT fails expectedly") {
     ASSERT(false);
- };
+  };
   ASSERT(cctest::detail_::n_tests_failed == nbefore + 1);
 };
 
@@ -123,6 +123,29 @@ TEST("ASSERT_THROWS throws if unexpected throw type") {
     };
   };
   ASSERT(std::string{e.what()} == "[cctest]: unexpected throw type");
+};
+
+TEST("Tests may be defined in separate threads") {
+  static bool t1_tested = false;
+  static bool t2_tested = false;
+
+  auto t1 = std::thread{[] {
+    TEST("Thread 1") {
+      t1_tested = true;
+      ASSERT(true);
+    };
+  }};
+
+  auto t2 = std::thread{[] {
+    TEST("Thread 2") {
+      t2_tested = true;
+      ASSERT(true);
+    };
+  }};
+
+  t1.join();
+  t2.join();
+  ASSERT(t1_tested && t2_tested);
 };
 
 TEST("expected tests failed") {
