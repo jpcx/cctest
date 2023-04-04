@@ -6,8 +6,6 @@ cctest is a tiny test framework for C++17.
 
 __The API has been simplified since 0.4.2. Please check the usage instructions and CHANGELOG.__
 
-cctest is thread-safe; one atomic counter is used and each test calls `cout` only once.
-
 ## Usage
 
 Creating a main file (may be seperate or as part of a test source):
@@ -36,6 +34,8 @@ TEST("multiple tests per file are OK") {
   static_assert(true, "runtime assertions are not required");
 };
 ```
+
+_Note: cctest is thread safe, but most tests should be defined at namespace or global scope._
 
 Execution:
 
